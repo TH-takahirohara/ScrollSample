@@ -59,15 +59,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 100
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let currentOffsetY: CGFloat = scrollView.contentOffset.y
         let maximumOffset: CGFloat = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom: CGFloat = maximumOffset - currentOffsetY
-        
-        if !tableView.isTracking {
-            if distanceToBottom < 1000 {
-                addCells()
-            }
+
+        if distanceToBottom < 1000 {
+            addCells()
         }
     }
 }
